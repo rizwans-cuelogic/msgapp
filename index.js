@@ -8,14 +8,14 @@ var io = require("socket.io")(server);
 
 app.use(express.static("./public"));
 
-io.on("connection", function(socket) {
-
-    socket.on("msg", function(message) {
-    	socket.broadcast.emit("message", message);
+io.on("connection", function (socket) {
+    console.log("connected to socket");
+    socket.on("msg", function (message) {
+        socket.broadcast.emit("message", message);
     });
 
-	socket.emit("message", "Welcome to Msg App");
+    socket.emit("message", "Welcome to Msg App");
 
 });
 
-console.log("Starting Socket App - %s",process.env.PORT);
+console.log("Starting Socket App - %s", process.env.PORT);
